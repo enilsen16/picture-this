@@ -1,0 +1,22 @@
+0.  BMP supports over 4 billion colors, JPEG and PNG both support 16 million colors, GIF supports 256 Colors.
+1.  GIF
+2.  Lossless Compression is when every single bit of data remains identical after a file is uncompressed.
+    Lossy Compression reduces a file by permanently eliminating certain information. When the file is uncompressed, only part of the original information remains.
+3.  JPEGs are lossy-compressed
+4.  When a FAT file is erased, a few things happen. The OS first modifies the filename's first character to signal that the file has been deleted. Then the system moves all the file's FAT clusters to the list of free clusters.
+5.  While physically destroying the media is always the best. You can also delete data securely by replacing the section on disk with all zeros.
+6.  stidint.h is a header file that provides a set of typedefs that specify exact-width integer types. It also defines maximum and minimum allowable values for each type, using macros.
+7.  They allow the programmer to provide the exact size they would like there program to be.
+8.  A Byte = 1 Byte
+A DWORD = 4 Bytes
+A LONG = 4 Bytes
+A WORD = 2 Bytes
+9.  The first two bytes of a BMP are a WORD. It will be set to BM to indicate bitmap.
+10. bfSize specifies the size, in bytes, of the bitmap file. biSize is the number of bytes required by the structure.
+11. If biHeight is negative, the bitmap is a top-down DIB and its origin is the upper-left corner.
+12. The biBitCount determines the number of bits that define each pixel and maximum number of colors in the bitmap.
+13. fopen will return NULL if i can not create the file to write too. For example if it runs out of disk space.
+14. the fread function is reading one byte at a time.
+15. The scanline padding would equal 3 Bytes. Making the entire line 12 Bytes.
+16. fseek sets the file position of the stream to the given offset.
+17. SEEK_CUR is a integer constant which, when used as the whence argument to the fseek function, specifies the offset provided is relative to the current files position.
