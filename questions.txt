@@ -20,3 +20,4 @@ A WORD = 2 Bytes
 15. The scanline padding would equal 3 Bytes. Making the entire line 12 Bytes.
 16. fseek sets the file position of the stream to the given offset.
 17. SEEK_CUR is a integer constant which, when used as the whence argument to the fseek function, specifies the offset provided is relative to the current files position.
+18. Milo Banana Dun It 
