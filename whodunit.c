@@ -87,7 +87,7 @@ int main(int argc, char* argv[])
               triple.rgbtGreen = 0xff;
               triple.rgbtBlue = 0xff;
             }
-            if (triple.rgbtRed < 0xff)
+            if (triple.rgbtRed != 0xff)
               {
                 triple.rgbtRed = 0x00;
                 triple.rgbtGreen = 0x00;
