@@ -10,20 +10,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "bmp.h"
+#include "bmp/bmp.h"
 
 int main(int argc, char* argv[])
 {
     // ensure proper usage
-    if (argc != 3)
+    if (argc != 4)
     {
-        printf("Usage: ./copy infile outfile\n");
+        printf("Usage: ./resize n infile outfile\n");
         return 1;
     }
 
+    // set n
+    char* n = argv[1];
+    int multiplier = atoi(n);
     // remember filenames
-    char* infile = argv[1];
-    char* outfile = argv[2];
+    char* infile = argv[2];
+    char* outfile = argv[3];
+
+    // ensure multiplier is 1 to 100
+    if (multiplier > 1 && multiplier < 100)
+    {
+      printf("n must be greater than one but less than 100\n");
+      printf("Usage: ./resize n infile outfile\n");
+      return 1;
+    }
 
     // open input file
     FILE* inptr = fopen(infile, "r");
