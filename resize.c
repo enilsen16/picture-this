@@ -1,12 +1,3 @@
-/**
- * copy.c
- *
- * Computer Science 50
- * Problem Set 5
- *
- * Copies a BMP piece by piece, just because.
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,12 +15,13 @@ int main(int argc, char* argv[])
     // set n
     char* n = argv[1];
     int multiplier = atoi(n);
+    printf("%i", multiplier);
     // remember filenames
     char* infile = argv[2];
     char* outfile = argv[3];
 
     // ensure multiplier is 1 to 100
-    if (multiplier > 1 && multiplier < 100)
+    if (multiplier <= 1 && multiplier >= 100)
     {
       printf("n must be greater than one but less than 100\n");
       printf("Usage: ./resize n infile outfile\n");
@@ -89,11 +81,14 @@ int main(int argc, char* argv[])
             // temporary storage
             RGBTRIPLE triple;
 
+            for (int l = 0; l < multiplier; l++ )
+            {
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
+            }
         }
 
         // skip over padding, if any

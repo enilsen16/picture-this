@@ -1,12 +1,3 @@
-/**
- * copy.c
- *
- * Computer Science 50
- * Problem Set 5
- *
- * Copies a BMP piece by piece, just because.
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
