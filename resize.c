@@ -64,9 +64,12 @@ int main(int argc, char* argv[])
     }
 
     // write outfile's BITMAPFILEHEADER
+    bf.bfSize = (bf.bfSize * multiplier);
     fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
 
     // write outfile's BITMAPINFOHEADER
+    bi.biWidth = (bi.biWidth * multiplier);
+    bi.biHeight = (bi.biHeight * multiplier);
     fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
@@ -81,14 +84,11 @@ int main(int argc, char* argv[])
             // temporary storage
             RGBTRIPLE triple;
 
-            for (int l = 0; l < multiplier; l++ )
-            {
             // read RGB triple from infile
             fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
 
             // write RGB triple to outfile
             fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
-            }
         }
 
         // skip over padding, if any
