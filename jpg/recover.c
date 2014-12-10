@@ -14,38 +14,39 @@ int main(int argc, char* argv[])
   FILE* card = fopen("./jpg/card.raw", "r");
   if (card == NULL)
   {
-    printf("Please make sure that card.raw exists");
+    printf("Please make sure that card.raw exists\n");
     return 2;
   }
 
   int count = 0;
   // declare the empty 512-integer array
   uint8_t buffer[512];
+  FILE* outptr = NULL;
 
-  // scanf("%hhu", buffer);
-  // Recrusively add 512 bytes into buffer
 
-    while (fread(buffer, 512, 1, card))
+  while (fread(buffer, 512, 1, card))
+  {
+    // start of a new JPG
+    // Yes
+    if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] == 0xe1 || buffer[3] == 0xe0))
     {
-      if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] == 0xe1 || buffer[3] == 0xe0))
-      {
-        printf("YES");
-        count++;
-        printf("%i\n", count);
-      }
+      // close file if it hasnt already
+      if (outptr != NULL)fclose(outptr);
 
+      // Open a new JPG
+      char name[8];
+      sprintf(name, "%03d.jpg", count);
+      outptr = fopen(name, "w");
+      count++;
     }
-
-  // start of a new JPG
-  // Yes
-
-    // Open a new JPG
     // Write the JPG
-    // Close and Loop agian
+    if (outptr != NULL)
+    {
+      fwrite(buffer, 512, 1, outptr);
+    }
+  }
 
-  // No
-
-    //Go through the loop agian
+  if (outptr != NULL) fclose(outptr);
 
   //Close any remaining files
   fclose(card);
