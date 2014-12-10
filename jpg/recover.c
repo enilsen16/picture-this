@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+const int BLOCK_SIZE = 512;
+
 int main(int argc, char* argv[])
 {
   // ensure proper usage
@@ -11,19 +13,22 @@ int main(int argc, char* argv[])
   }
 
   // open card.raw
-  FILE* card = fopen("card.raw", "r");
-  if ("card.raw" == NULL)
+  FILE* card = fopen("./jpg/card.raw", "r");
+  if (card == NULL)
   {
     printf("Please make sure that card.raw exists");
     return 2;
   }
 
-  // declare the empty 512-integer array
-  unsigned int buffer[512];
 
-  // scanf("%d", buffer);
+  // declare the empty 512-integer array
+  uint8_t buffer[512];
+
+  // scanf("%hhu", buffer);
   // Recrusively add 512 bytes into buffer
-  fread(&buffer, 512, 1, card);
+
+    fread(buffer, BLOCK_SIZE, 1, card);
+    printf("BYTE: %02x\n", buffer[0]);
 
   // start of a new JPG
   // Yes
@@ -37,4 +42,6 @@ int main(int argc, char* argv[])
     //Go through the loop agian
 
   //Close any remaining files
+  fclose(card);
+  return 0;
 }
