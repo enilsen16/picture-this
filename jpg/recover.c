@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const int BLOCK_SIZE = 512;
-
 int main(int argc, char* argv[])
 {
   // ensure proper usage
@@ -20,15 +18,23 @@ int main(int argc, char* argv[])
     return 2;
   }
 
-
+  int count = 0;
   // declare the empty 512-integer array
   uint8_t buffer[512];
 
   // scanf("%hhu", buffer);
   // Recrusively add 512 bytes into buffer
 
-    fread(buffer, BLOCK_SIZE, 1, card);
-    printf("BYTE: %02x\n", buffer[0]);
+    while (fread(buffer, 512, 1, card))
+    {
+      if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] == 0xe1 || buffer[3] == 0xe0))
+      {
+        printf("YES");
+        count++;
+        printf("%i\n", count);
+      }
+
+    }
 
   // start of a new JPG
   // Yes
